@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.js"
+      integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      .card {
+        padding: 15px;
+        margin: 15px;
+        box-shadow: 3px 3px 5px #eaeaea, -3px -3px 5px #eaeaea;
+        border-radius: 8px;
+      }
+      button {
+        padding: 3px 12px;
+        background-color: #255252;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+      }
+      textarea {
+        border: 1px solid #999;
+        border-radius: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <textarea name="" id="login-text" cols="30" rows="10">
+        {
+          "name": "zs",
+          "password": "123456"
+        }
+      </textarea>
+      <button id="login">登录</button>
+    </div>
+
+    <div class="card">
+      <textarea name="" id="list-text" cols="30" rows="10"> </textarea>
+      <button id="getList">获取list</button>
+    </div>
+
+    <script>
+      const ACCESS_TOKEN_KEY = "ACCESS_TOKEN_KEY";
+      const REFRESH_TOKEN_KEY = "REFRESH_TOKEN_KEY";
+      const serve = axios.create({
+        timeout: 2000,
+      });
+
+      serve.interceptors.request.use(
+        (config) => {
+          console.log("config", config);
+          config.headers.Authorization = `bearer ${
+            window.localStorage.getItem(ACCESS_TOKEN_KEY) || ""
+          }`;
+          return config;
+        },
+        (error) => Promise.reject(err)
+      );
+
+      serve.interceptors.response.use(
+        (response) => {
+          return response.data;
+        },
+        async (error) => {
+          // 判断状态码为401表示access_token 已过期
+          if (error.response.status === 401) {
+            // 从本地中取出刷新token  refresh_token
+            const refresh_token =
+              window.localStorage.getItem(REFRESH_TOKEN_KEY);
+            // 请求refreshToken 通过refresh_token获取 最新的access_token
+            const { data } = await axios.get("/refreshToken", {
+              params: {
+                refresh_token,
+              },
+            });
+            // 判断返回结果
+            if (data.code === 200) {
+              // 将新的 access_token缓存到本地
+              window.localStorage.setItem(ACCESS_TOKEN_KEY, data.access_token);
+              // 重新携带config、发起请求（authorization需要使用最新的access_token）
+              const res = await axios({
+                ...error.config,
+                headers: {
+                  ...error.config.headers,
+                  Authorization: `bearer ${data.access_token}`,
+                },
+              });
+              // 并将结果给返回出错
+              return res.data;
+            }
+          }
+          return Promise.reject(error);
+        }
+      );
+
+      $(function () {
+        // 登录
+        $("#login").on("click", async () => {
+          const { refresh_token, access_token } = await serve.get("/login", {
+            params: JSON.parse($("#login-text").val()),
+          });
+          window.localStorage.setItem(ACCESS_TOKEN_KEY, access_token);
+          window.localStorage.setItem(REFRESH_TOKEN_KEY, refresh_token);
+        });
+
+        // 登录
+        $("#getList").on("click", async () => {
+          const { list } = await serve.get("/getList");
+          $("#list-text").val(JSON.stringify(list, null, 2));
+        });
+      });
+    </script>
+  </body>
+</html>
