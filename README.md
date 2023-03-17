@@ -64,7 +64,7 @@
 
 
 
-![session.png](images/16f523a04d0b3cf5tplv-t2oaga2asx-zoom-in-crop-mark3024000.awebp)
+![session.png](https://blog-1302889287.cos.ap-nanjing.myqcloud.com/%E5%89%8D%E7%AB%AF%E6%8E%88%E6%9D%83%E6%96%B9%E6%A1%88/16f523a04d0b3cf5tplv-t2oaga2asx-zoom-in-crop-mark3024000_png.png)
 
 
 
@@ -104,7 +104,7 @@
 
 
 
-![img](images/16f523a04d9c745ftplv-t2oaga2asx-zoom-in-crop-mark3024000.awebp)
+![img](https://blog-1302889287.cos.ap-nanjing.myqcloud.com/%E5%89%8D%E7%AB%AF%E6%8E%88%E6%9D%83%E6%96%B9%E6%A1%88/16f523a04d9c745ftplv-t2oaga2asx-zoom-in-crop-mark3024000_png.png)
 
 
 
@@ -128,7 +128,7 @@
 
 
 
-![img](images/16f523a04d1c887btplv-t2oaga2asx-zoom-in-crop-mark3024000.awebp)
+![img](https://blog-1302889287.cos.ap-nanjing.myqcloud.com/%E5%89%8D%E7%AB%AF%E6%8E%88%E6%9D%83%E6%96%B9%E6%A1%88/16f523a04d1c887btplv-t2oaga2asx-zoom-in-crop-mark3024000_png.png)
 
 
 
@@ -164,7 +164,7 @@
 
 
 
-![img](images/16f523a04e881087tplv-t2oaga2asx-zoom-in-crop-mark3024000.awebp)
+![img](https://blog-1302889287.cos.ap-nanjing.myqcloud.com/%E5%89%8D%E7%AB%AF%E6%8E%88%E6%9D%83%E6%96%B9%E6%A1%88/16f523a04e881087tplv-t2oaga2asx-zoom-in-crop-mark3024000_png.png)
 
 
 
@@ -256,7 +256,7 @@ http://www.example.com/user?token=xxx复制代码
 
 
 
-![image.png](images/16f523a04f17f2fctplv-t2oaga2asx-zoom-in-crop-mark3024000.awebp)
+![image.png](https://blog-1302889287.cos.ap-nanjing.myqcloud.com/%E5%89%8D%E7%AB%AF%E6%8E%88%E6%9D%83%E6%96%B9%E6%A1%88/16f523a04f17f2fctplv-t2oaga2asx-zoom-in-crop-mark3024000_png.png)
 
 
 
@@ -371,7 +371,7 @@ http://www.example.com/user?token=xxx复制代码
 
 
 
-![img](images/16f523a04fb8b4b8tplv-t2oaga2asx-zoom-in-crop-mark3024000.awebp)
+![img](https://blog-1302889287.cos.ap-nanjing.myqcloud.com/%E5%89%8D%E7%AB%AF%E6%8E%88%E6%9D%83%E6%96%B9%E6%A1%88/16f523a04fb8b4b8tplv-t2oaga2asx-zoom-in-crop-mark3024000_png.png)
 
 
 
@@ -498,7 +498,7 @@ console.log(token);
 // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InpzIiwiYWdlIjoxOCwiaWF0IjoiMTY3ODk1Mjg2MyJ9.v8IppGUVUjWNt4IMPO4b8woKfgpa_FvWR2KhYg0A9CM
 ```
 
-![image-20230316170054994](images/image-20230316170054994.png)
+![image-20230316170054994](https://blog-1302889287.cos.ap-nanjing.myqcloud.com/%E5%89%8D%E7%AB%AF%E6%8E%88%E6%9D%83%E6%96%B9%E6%A1%88/image-20230316170054994.png)
 
 将我们生成的token放到`https://jwt.io/`中进行校验、结果显示成功
 
@@ -524,7 +524,7 @@ console.log(token);
 * 4、返回`access_token`时、再返回一个`refresh_token` 刷新token  (`refresh_token`的有效时长大于 `access_token`； 比如 `access_token`有效2h, `refresh_token`有效24小时)
   * 当`access_token`过期时，再发送一个请求携带者`refresh_token`、来获取新的token
 
-![image-20230317103737254](images/image-20230317103737254.png)
+![image-20230317103737254](https://blog-1302889287.cos.ap-nanjing.myqcloud.com/%E5%89%8D%E7%AB%AF%E6%8E%88%E6%9D%83%E6%96%B9%E6%A1%88/image-20230317103737254.png)
 
 
 
@@ -550,7 +550,7 @@ console.log(token);
 
 具体流程如下：
 
-![image-20230317141635897](images/image-20230317141635897.png)
+![image-20230317141635897](https://blog-1302889287.cos.ap-nanjing.myqcloud.com/%E5%89%8D%E7%AB%AF%E6%8E%88%E6%9D%83%E6%96%B9%E6%A1%88/image-20230317141635897.png)
 
 * 1、初次登录时、后台返回两个`token` 分别是： `access_token` 和 `refresh_token`
 * 2、下次请求的时候在请求头中携带`access_token`、后台进行判断`access_token`是否有效？
@@ -905,7 +905,7 @@ app.listen(port, () => {
 
 在本地实验的、我们设置`access_token`有效期是`5s` 、`refresh_token`有效期是`1h`;下面看一下实验结果
 
-![20230317_150300](images/20230317_150300.gif)
+![20230317_150300](https://blog-1302889287.cos.ap-nanjing.myqcloud.com/%E5%89%8D%E7%AB%AF%E6%8E%88%E6%9D%83%E6%96%B9%E6%A1%88/20230317_150300.gif)
 
 > 上图分析： 
 >
